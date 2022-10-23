@@ -143,7 +143,7 @@ export default function UserPage() {
       </Stack>
 
       <Card sx={{ p: 2 }}>
-        <UserListToolbar numSelected={selected.length} filterName={filterName} onFilterName={handleFilterByName} />
+        <UserListToolbar numSelected={selected.length} filterName={filterName} onSearchClick onFilterName={handleFilterByName} />
         <Grid container spacing={10}>
           <Grid item xs={6}>
             <TableContainer >
@@ -176,7 +176,7 @@ export default function UserPage() {
                       </TableRow>
                     );
                   })}
-                  <TableRow hover key={'Transport'} tabIndex={-1} role="contentinfo" selected={true} sx={{ '& > .MuiTableCell-root': { fontWeight: 700, color: 'black ' }, borderBottom: '2px solid #808080' }}>
+                  <TableRow hover key={'Process'} tabIndex={-1} role="contentinfo" selected={true} sx={{ '& > .MuiTableCell-root': { fontWeight: 700, color: 'black ' }, borderBottom: '2px solid #808080' }}>
 
                     <TableCell component="th" scope="row" padding="normal">{'Processing'}</TableCell>
 
@@ -245,7 +245,7 @@ export default function UserPage() {
             <Typography variant="h5" mb={2} align="center" gutterBottom>
               Verifiable Credential
             </Typography>
-            {data ? console.log(data[page-1].credentialSubject) : null}
+            {data ? console.log(data[page - 1].credentialSubject) : null}
             <ReactJson theme={'summerfruit:inverted'} src={data && data[page - 1] ? data[page - 1] : {}} />
 
             <Pagination
@@ -271,7 +271,13 @@ export default function UserPage() {
               }}
             />
           </Grid>
+          <Grid item xs={2}>
+            <Typography variant="h5" mb={2} align="center" gutterBottom>
+
+            </Typography>
+          </Grid>
         </Grid>
+
       </Card>
     </Container>
   );
