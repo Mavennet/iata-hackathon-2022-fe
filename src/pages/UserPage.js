@@ -44,8 +44,8 @@ const TABLE_HEAD = [
 ];
 
 const productionEmissions = [
-  { name: 'CO2', ours: '3.1', benchmark: '4.464' },
-  { name: 'CH4', ours: '0.8', benchmark: '1.1' },
+  { name: 'CO2', ours: '3.10', benchmark: '4.464' },
+  { name: 'CH4', ours: '0.80', benchmark: '1.1' },
   { name: 'N2O', ours: '0.02', benchmark: '0.02' },
   { name: 'Total production', ours: '3.92', benchmark: '5.584' }
 ];
@@ -149,7 +149,7 @@ export default function UserPage() {
           <Grid item xs={6}>
             <TableContainer >
               <Table>
-                <UserListHead
+                {data && <UserListHead
                   order={order}
                   orderBy={orderBy}
                   headLabel={TABLE_HEAD}
@@ -157,8 +157,8 @@ export default function UserPage() {
                   numSelected={selected.length}
                   onRequestSort={handleRequestSort}
                   onSelectAllClick={handleSelectAllClick}
-                />
-                <TableBody sx={{ borderRight: '1px solid #808080', borderLeft: '1px solid #808080' }}>
+                />}
+                {data && (<TableBody sx={{ borderRight: '1px solid #808080', borderLeft: '1px solid #808080' }}>
                   {productionEmissions.map((row) => {
                     const { name, ours, benchmark } = row;
                     const selectedUser = selected.indexOf(name) !== -1;
@@ -181,11 +181,11 @@ export default function UserPage() {
 
                     <TableCell component="th" scope="row" padding="normal">{'Processing'}</TableCell>
 
-                    <TableCell align="left" padding="normal">{0.2}</TableCell>
+                    <TableCell align="left" padding="normal">{0.20.toFixed(2)}</TableCell>
 
-                    <TableCell align="left" padding="normal">{0.9}</TableCell>
+                    <TableCell align="left" padding="normal">{0.90.toFixed(2)}</TableCell>
 
-                    <TableCell align="left" padding="normal" sx={{ color: 0.9 - 0.2 / 0.9 > 0 ? 'green' : 0.9 - 0.2 / 0.9 < 0 ? 'red' : 'grey' }}>{`${Math.abs(5)}%`}</TableCell>
+                    <TableCell align="left" padding="normal" sx={{ '&.MuiTableCell-root': { color: 0.9 - 0.2 / 0.9 > 0 ? 'green' : 0.9 - 0.2 / 0.9 < 0 ? 'red' : 'grey' } }}>{`${Math.abs(5)}%`}</TableCell>
 
                   </TableRow>
 
@@ -193,11 +193,11 @@ export default function UserPage() {
 
                     <TableCell component="th" scope="row" padding="normal">{'Transportation'}</TableCell>
 
-                    <TableCell align="left" padding="normal">{'variable'}</TableCell>
+                    <TableCell align="left" padding="normal">{'0.36'}</TableCell>
 
-                    <TableCell align="left" padding="normal">{'mock%'}</TableCell>
+                    <TableCell align="left" padding="normal">{'0.34'}</TableCell>
 
-                    <TableCell align="left" padding="normal" sx={{ color: 5 > 0 ? 'green' : 5 < 0 ? 'red' : 'grey' }}>{`${Math.abs(5)}%`}</TableCell>
+                    <TableCell align="left" padding="normal" sx={{ '&.MuiTableCell-root': { color: 'red' } }}>{`8.89%`}</TableCell>
 
                   </TableRow>
 
@@ -205,17 +205,17 @@ export default function UserPage() {
 
                     <TableCell component="th" scope="row" padding="normal">{'Grand Total'}</TableCell>
 
-                    <TableCell align="left" padding="normal">{'variable'}</TableCell>
+                    <TableCell align="left" padding="normal">{'4.48'}</TableCell>
 
-                    <TableCell align="left" padding="normal">{'mock%'}</TableCell>
+                    <TableCell align="left" padding="normal">{'6.86'}</TableCell>
 
-                    <TableCell align="left" padding="normal" sx={{ color: 5 > 0 ? 'green' : 5 < 0 ? 'red' : 'grey' }}>{`${Math.abs(5)}%`}</TableCell>
+                    <TableCell align="left" padding="normal" sx={{ '&.MuiTableCell-root': { color: 'green' } }}>{`${Math.abs(34.54)}%`}</TableCell>
 
                   </TableRow>
 
-                </TableBody>
+                </TableBody>)}
 
-                {isNotFound && (
+                {!data && (
                   <TableBody>
                     <TableRow>
                       <TableCell align="center" colSpan={6} sx={{ py: 3 }}>
