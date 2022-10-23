@@ -126,13 +126,14 @@ export default function UserPage() {
   const isNotFound = !filteredUsers.length && !!filterName;
 
   const fetchData = async () => {
-    const response = await axios.get('http://localhost:8000/credential/', { params: { "id": "KobePiece" } });
+    const response = await axios.get('https://iata-hackathon.herokuapp.com/credential/', { params: { "id": `${filterName}` } });
     setData(response.data);
+    setPage(1)
   }
 
-  useEffect(() => {
-    fetchData();
-  }, [])
+  // useEffect(() => {
+  //   fetchData();
+  // }, [])
 
   return (
     <Container sx={{ maxWidth: '75%' }}>
@@ -143,7 +144,7 @@ export default function UserPage() {
       </Stack>
 
       <Card sx={{ p: 2 }}>
-        <UserListToolbar numSelected={selected.length} filterName={filterName} onSearchClick onFilterName={handleFilterByName} />
+        <UserListToolbar numSelected={selected.length} filterName={filterName} onSearchClick={fetchData} onFilterName={handleFilterByName} />
         <Grid container spacing={10}>
           <Grid item xs={6}>
             <TableContainer >
@@ -245,7 +246,7 @@ export default function UserPage() {
             <Typography variant="h5" mb={2} align="center" gutterBottom>
               Verifiable Credential
             </Typography>
-            {data ? console.log(data[page - 1].credentialSubject) : null}
+            {data ? console.log(data[page - 1]?.credentialSubject) : null}
             <ReactJson theme={'summerfruit:inverted'} src={data && data[page - 1] ? data[page - 1] : {}} />
 
             <Pagination
