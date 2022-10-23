@@ -246,7 +246,6 @@ export default function UserPage() {
             <Typography variant="h5" mb={2} align="center" gutterBottom>
               Verifiable Credential
             </Typography>
-            {data ? console.log(data[page - 1]?.credentialSubject) : null}
             <ReactJson theme={'summerfruit:inverted'} src={data && data[page - 1] ? data[page - 1] : {}} />
 
             <Pagination
