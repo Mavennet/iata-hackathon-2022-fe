@@ -126,7 +126,7 @@ export default function UserPage() {
   const isNotFound = !filteredUsers.length && !!filterName;
 
   const fetchData = async () => {
-    const response = await axios.get('http://localhost:8000/credential/', { data: { "id": "iata:Piece/KobePiece" } });
+    const response = await axios.get('http://localhost:8000/credential/', { params: { "id": "KobePiece" } });
     setData(response.data);
   }
 
@@ -243,8 +243,9 @@ export default function UserPage() {
           </Grid>
           <Grid item xs={6}>
             <Typography variant="h5" mb={2} align="center" gutterBottom>
-              {data ? `${data[page - 1].credentialSubject?.type[0].toUpperCase() + data[page - 1].credentialSubject?.type.slice(1)} Verifiable Credential` : 'Verifiable Credential'}
+              Verifiable Credential
             </Typography>
+            {data ? console.log(data[page-1].credentialSubject) : null}
             <ReactJson theme={'summerfruit:inverted'} src={data && data[page - 1] ? data[page - 1] : {}} />
 
             <Pagination
