@@ -79,7 +79,7 @@ export default function Nav({ openNav, onCloseNav }) {
 
       <Box sx={{ flexGrow: 1 }} />
 
-    
+
     </Scrollbar>
   );
 
@@ -93,8 +93,8 @@ export default function Nav({ openNav, onCloseNav }) {
     >
       {isDesktop ? (
         <Drawer
-          open
-          variant="permanent"
+          open={false}
+          variant="temporary"
           PaperProps={{
             sx: {
               width: NAV_WIDTH,
@@ -109,9 +109,9 @@ export default function Nav({ openNav, onCloseNav }) {
         <Drawer
           open={openNav}
           onClose={onCloseNav}
-          ModalProps={{
-            keepMounted: true,
-          }}
+          // ModalProps={{
+          //   keepMounted: true,
+          // }}
           PaperProps={{
             sx: { width: NAV_WIDTH },
           }}
